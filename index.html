@@ -269,56 +269,21 @@
       <h2 id="modal-title">הרשמה</h2>
       <p id="modal-subtitle" class="modal-subtitle"></p>
 
-      <form id="signup-form" onsubmit="submitForm(event)">
+      <form id="signup-form" onsubmit="submitForm(event)" novalidate>
         <div class="form-group">
           <label for="name">שם מלא</label>
           <input type="text" id="name" placeholder="ישראל ישראלי" required autocomplete="name" />
+          <span class="field-error" id="name-error"></span>
         </div>
         <div class="form-group">
           <label for="email">אימייל</label>
-          <input type="email" id="email" placeholder="you@example.com" required autocomplete="email" />
+          <input type="email" id="email" placeholder="example@gmail.com" required autocomplete="email" />
+          <span class="field-error" id="email-error"></span>
         </div>
         <div class="form-group">
-          <label for="phone">טלפון</label>
-          <input type="tel" id="phone" placeholder="05X-XXXXXXX" required autocomplete="tel" />
-        </div>
-        <div class="form-group">
-          <label for="desc">תיאור העבודה / הצורך שלך</label>
-          <textarea id="desc" placeholder="ספר לנו על העבודה או הפרויקט שאתה צריך עזרה בו..." rows="3" required></textarea>
-        </div>
-
-        <div class="payment-section">
-          <h3>בחר שיטת תשלום</h3>
-          <div class="payment-methods">
-            <label class="payment-option">
-              <input type="radio" name="payment" value="bit" required />
-              <div class="payment-card">
-                <div class="payment-logo bit-logo">Bit</div>
-                <span>Bit</span>
-              </div>
-            </label>
-            <label class="payment-option">
-              <input type="radio" name="payment" value="paybox" />
-              <div class="payment-card">
-                <div class="payment-logo paybox-logo">P</div>
-                <span>Paybox</span>
-              </div>
-            </label>
-            <label class="payment-option">
-              <input type="radio" name="payment" value="paypal" />
-              <div class="payment-card">
-                <div class="payment-logo paypal-logo">PP</div>
-                <span>PayPal</span>
-              </div>
-            </label>
-            <label class="payment-option">
-              <input type="radio" name="payment" value="cash" />
-              <div class="payment-card">
-                <div class="payment-logo cash-logo">₪</div>
-                <span>מזומן</span>
-              </div>
-            </label>
-          </div>
+          <label for="phone">טלפון <span class="field-hint">(פורמט: 05X-XXXXXXX)</span></label>
+          <input type="tel" id="phone" placeholder="050-1234567" required autocomplete="tel" />
+          <span class="field-error" id="phone-error"></span>
         </div>
 
         <div id="price-display" class="price-display"></div>

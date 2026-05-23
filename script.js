@@ -41,8 +41,49 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^05\d[-]?\d{7}$/;
+
+function showError(id, msg) {
+  const el = document.getElementById(id + '-error');
+  const input = document.getElementById(id);
+  if (el) el.textContent = msg;
+  if (input) input.classList.toggle('input-error', !!msg);
+}
+
+function validateForm() {
+  let valid = true;
+
+  const name = document.getElementById('name').value.trim();
+  if (name.length < 2) {
+    showError('name', 'נא להזין שם מלא (לפחות 2 תווים)');
+    valid = false;
+  } else {
+    showError('name', '');
+  }
+
+  const email = document.getElementById('email').value.trim();
+  if (!EMAIL_RE.test(email)) {
+    showError('email', 'כתובת אימייל לא תקינה — לדוגמה: name@gmail.com');
+    valid = false;
+  } else {
+    showError('email', '');
+  }
+
+  const phone = document.getElementById('phone').value.trim();
+  if (!PHONE_RE.test(phone)) {
+    showError('phone', 'מספר טלפון לא תקין — פורמט נדרש: 05X-XXXXXXX');
+    valid = false;
+  } else {
+    showError('phone', '');
+  }
+
+  return valid;
+}
+
 function submitForm(e) {
   e.preventDefault();
+  if (!validateForm()) return;
   const btn = e.target.querySelector('.btn-submit');
   btn.textContent = 'שולח...';
   btn.disabled = true;
